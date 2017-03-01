@@ -28,7 +28,7 @@
 
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="sub-form rf">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('subscribers')}}" enctype="multipart/form-data">
+                    <form class="form-horizontal" role="form" method="POST" action="" enctype="multipart/form-data">
                         {{csrf_field()}}
 
                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">

@@ -278,7 +278,7 @@
                     </li>
                     <li>
                             @foreach($profiles as $profile)
-                        <a href="/emplousers/{{$profile->id}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="{{--/emplousers/{{$profile->id}}--}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             @endforeach
                     </li>
                     <li>

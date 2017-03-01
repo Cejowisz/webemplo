@@ -23,23 +23,22 @@ Route::get('career', 'PagesController@career');
 Route::get('login', 'PagesController@login');
 Route::get('media', 'PagesController@media');
 
-Route::get('subscription', 'SubscriptionController@index');
+//Route::get('subscription', 'SubscriptionController@index');
 
 // Admin
 Route::get('admin', 'AdminController@index');
 
 
-// My customized Auth
-Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
-Route::get('handlelogin', ['as' => 'handlelogin', 'uses' => 'AuthController@handlelogin']);
+// Users
+Route::get('users', 'UsersController@index');
 
 // Subscribers
-Route::get('emplousers/{id}', ['as' => 'users.profile', 'uses' => 'SubscribersController@profile']);
-Route::get('subscribers', 'SubscribersController@index');
+//Route::get('emplousers/{id}', ['as' => 'users.profile', 'uses' => 'SubscribersController@profile']);
+//Route::get('subscribers', 'SubscribersController@index');
 
-Route::get('create', 'SubscribersController@create');
+//Route::get('create', 'SubscribersController@create');
 
-Route::post('subscribers', 'SubscribersController@store');
+//Route::post('subscribers', 'SubscribersController@store');
 
 
 Auth::routes();

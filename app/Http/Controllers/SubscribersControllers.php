@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Subscriber;
+
 
 
 class SubscribersController extends Controller
@@ -20,13 +20,13 @@ class SubscribersController extends Controller
         $profile = Subscriber::where('id', '=', $id)->first();
         return view('subscribers.profile')->withProfile($profile);
     }
+
     
-    
-    public function create()
+    /*public function create()
     {
         $subscribers = Subscriber::all();
         return view('subscribers.create')->withSubscribers($subscribers);
-    }
+    }*/
 
     public function store(Request $request)
     {

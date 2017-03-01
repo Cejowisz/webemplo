@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/users';
 
     /**
      * Create a new controller instance.
@@ -48,11 +48,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'fname' => 'required|max:255',
-            'lname' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'phone' => 'required|max:15',
-            'password' => 'required|min:6|confirmed',
+            'first_name'        =>  'required|max:255',
+            'last_name'         =>  'required|max:255',
+            'email'             =>  'required|max:255|unique:users,email',
+            'phone'             =>  'required|max:255',
+            'bank_name'         =>  'required|max:255',
+            'acct_name'         =>  'required|max:255',
+            'acct_number'       =>  'required|max:255',
+            'profile_pix'       =>  'nullable',
+            'sme'               =>  'nullable|max:255',
+            'other_sme'         =>  'nullable|max:255',
+            'password'          =>  'confirmed'
         ]);
     }
 
@@ -65,11 +71,17 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'fname' => $data['fname'],
-            'lname' => $data['lname'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'password' => bcrypt($data['password']),
+            'first_name'    => $data['first_name'],
+            'last_name'     => $data['last_name'],
+            'email'         => $data['email'],
+            'phone'         => $data['phone'],
+            'bank_name'     => $data['bank_name'],
+            'acct_name'     => $data['acct_name'],
+            'acct_number'   => $data['acct_number'],
+            'profile_pix'   => $data['profile_pix'],
+            'sme'           => $data['sme'],
+            'other_sme'     => $data['other_sme'],
+            'password'      => bcrypt($data['password']),
         ]);
     }
 }

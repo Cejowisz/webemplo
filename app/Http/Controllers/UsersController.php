@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,16 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return 'helo';
+        $user = Auth::user();
+        if($user->is_admin != true){
+            return 'He is an Admin ' . $user->first_name;
+        }else{
+
+            $userInfo = User::find(Auth::id())->first();
+            return view('users.index')->with('profile',$userInfo);
+
+        }
+
     }
 
     /**

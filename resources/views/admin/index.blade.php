@@ -1,1 +1,1 @@
-<h1>This is Lagos</h1>
+<h1>This is admin area</h1>
