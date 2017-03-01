@@ -1,0 +1,79 @@
+nav{
+    background: transparent !important;
+    border-bottom-color: transparent !important;
+}
+
+.web-navbar-right li a{
+    background: #A8CF45;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    color: #000 !important;
+}
+.web-navbar-right li {
+    margin-left: 2px;
+    min-width: 100px;
+    text-align: left;
+}
+
+.web-navbar{
+    margin-top: 10px;
+}
+
+.sm-img{
+    display: inline;
+    max-width: 120px !important;
+}
+
+.second-nav{
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.md{
+    margin-top: 25px;
+}
+.go-right{
+    text-align: right;
+}
+
+
+footer{
+    background: #262788;
+    color: #fff;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.social{
+    padding-left: 10px;
+}
+.social a{
+    color: #fff
+}
+
+.sub-form{
+    margin-top: 50px;
+}
+
+.rf .form-control{
+    border-radius: 30px;
+    border: 2px solid #00AFEF;
+}
+
+.rf{
+    border-radius: 30px;
+    border: 2px solid #00AFEF;
+    padding: 50px;
+    margin-bottom: 15px;
+}
+
+.career-left p{
+    margin-top: 50px;
+}
+.career{
+    margin-bottom: 20px;
+}
+.verif{
+    font-size: 150%;
+    margin-bottom: 10px !important;
+}
