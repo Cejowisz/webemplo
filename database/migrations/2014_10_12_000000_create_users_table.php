@@ -22,9 +22,11 @@ class CreateUsersTable extends Migration
             $table->string('bank_name');
             $table->string('acct_name');
             $table->integer('acct_number');
-            $table->string('profile_pix')->default('upload/pix.jpg');
+            $table->string('profile_pix')->default('pictures/pix.jpg');
             $table->string('sme');
             $table->string('other_sme');
+            $table->string('upline');
+            $table->string('line_up');
             $table->boolean('is_admin')->default(false);
             $table->string('password');
             $table->rememberToken();

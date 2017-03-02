@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'bank_name'         =>  'required|max:255',
             'acct_name'         =>  'required|max:255',
             'acct_number'       =>  'required|max:255',
-            'profile_pix'       =>  'nullable',
+            //'profile_pix'       =>  'nullable',
             'sme'               =>  'nullable|max:255',
             'other_sme'         =>  'nullable|max:255',
             'password'          =>  'confirmed'
@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'bank_name'     => $data['bank_name'],
             'acct_name'     => $data['acct_name'],
             'acct_number'   => $data['acct_number'],
-            'profile_pix'   => $data['profile_pix'],
+            //'profile_pix'   => $data['profile_pix']->store('pictures'),
             'sme'           => $data['sme'],
             'other_sme'     => $data['other_sme'],
             'password'      => bcrypt($data['password']),

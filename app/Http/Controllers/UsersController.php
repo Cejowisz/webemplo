@@ -21,13 +21,12 @@ class UsersController extends Controller
     public function index()
     {
         $user = Auth::user();
+
         if($user->is_admin != true){
-            return 'He is an Admin ' . $user->first_name;
-        }else{
-
-            $userInfo = User::find(Auth::id())->first();
+            $userInfo = User::find(Auth::id());
             return view('users.index')->with('profile',$userInfo);
-
+        }else{
+            return 'He is an Admin ' . $user->first_name;
         }
 
     }

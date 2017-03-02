@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{url('/')}}">
                 <img src="{{ url('img/home/WebEMPLO fund logo.png') }}" style="max-width: 170px;" class="img-responsive" alt="Webemplo Logo">
             </a>
         </div>
