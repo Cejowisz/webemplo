@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -27,6 +28,11 @@ class User extends Authenticatable
         'other_sme',
         'password',
     ];
+
+    public function levelonemodel()
+    {
+        return $this->hasOne('App\LevelOneModel', 'user_email');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

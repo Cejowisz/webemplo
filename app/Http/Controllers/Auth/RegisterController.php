@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\LevelOneModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\TestController;
 
 class RegisterController extends Controller
 {
@@ -70,7 +73,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // Add new user to level one table
+        
+
+
+        $user = User::create([
             'first_name'    => $data['first_name'],
             'last_name'     => $data['last_name'],
             'email'         => $data['email'],
@@ -81,7 +88,52 @@ class RegisterController extends Controller
             //'profile_pix'   => $data['profile_pix']->store('pictures'),
             'sme'           => $data['sme'],
             'other_sme'     => $data['other_sme'],
-            'password'      => bcrypt($data['password']),
+            'password'      => bcrypt($data['password'])
+
         ]);
+        
+
+            $levelone = new LevelOneModel();
+            $levelone->user_email = $data['email'] ;
+
+            $levelone->save();
+
+
+        // Selects older user column in levelone table and checks
+        // if it qualified to be incremented.
+        $countFollowers =  DB::table('level_one_models')
+            ->select('followers')
+            ->where('active', '=', '1')
+            ->orderBy('created_at', 'desc')
+            ->first()
+            ->followers;
+
+        if($countFollowers <= 6){
+            DB::table('level_one_models')
+                ->where('active', 1)
+                ->increment('followers', 1);
+        }else{
+            // A user completes his stage on and should begin stage 2
+            DB::table('level_one_models')
+                ->where('followers', '=', 7)
+                ->update(array('completed' => 1));
+            /*$levelone = new LevelOneModel();
+
+            $levelone->associate($id);
+
+            $levelone->save();*/
+        }
+
+
+
+
+        /*$testIoC = new TestController();
+
+        $testIoC->index();*/
+
+        return $user;
+
     }
+
+
 }

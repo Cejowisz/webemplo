@@ -23,10 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('acct_name');
             $table->integer('acct_number');
             $table->string('profile_pix')->default('pictures/pix.jpg');
-            $table->string('sme');
-            $table->string('other_sme');
-            $table->string('upline');
-            $table->string('line_up');
+            $table->string('sme')->nullable();
+            $table->string('other_sme')->nullable();
+            $table->string('line_up')->nullable();
             $table->boolean('is_admin')->default(false);
             $table->string('password');
             $table->rememberToken();

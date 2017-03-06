@@ -33,12 +33,7 @@ Route::get('admin', 'AdminController@index');
 Route::get('users', 'UsersController@index');
 
 // Subscribers
-//Route::get('emplousers/{id}', ['as' => 'users.profile', 'uses' => 'SubscribersController@profile']);
-//Route::get('subscribers', 'SubscribersController@index');
-
-//Route::get('create', 'SubscribersController@create');
-
-//Route::post('subscribers', 'SubscribersController@store');
+Route::get('downline', 'LevelOneController@giveDownline');
 
 
 Auth::routes();
