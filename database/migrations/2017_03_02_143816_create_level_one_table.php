@@ -20,6 +20,7 @@ class CreateLevelOneTable extends Migration
             $table->integer('followers')->default(0);
             $table->boolean('active')->default(false);
             $table->integer('completed')->default(0);
+            $table->integer('stop_count')->default(1);
             //$table->foreign('downline')->references('email')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
