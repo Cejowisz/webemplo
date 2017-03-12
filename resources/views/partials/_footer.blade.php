@@ -17,7 +17,8 @@
     </div>
 </footer>
 
-
+<script src="{{ url('js/jquery.min.js') }}"></script>
+<script src="{{ url('js/bootstrap.min.js') }}"></script>
 <script src="/js/app.js"></script>
 
 </body>

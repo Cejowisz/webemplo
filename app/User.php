@@ -34,6 +34,12 @@ class User extends Authenticatable
         return $this->hasOne('App\LevelOneModel', 'user_email');
     }
 
+
+    public function leveltwomodel()
+    {
+        return $this->hasOne('App\LevelOneModel', 'user_id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

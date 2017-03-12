@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 
+
 class TestController extends Controller
 {
     public function index()
     {
 
-      return DB::table('level_one_models')->select('user_email')
-          ->where('completed', '=', '0')->first()->user_email;
-
+       $f =  LevelOneModel::where('user_email', 'cjustinobi@gmail.com')->first();
+        $f->created_at;
       /*$user = DB::table('level_one_models')
             ->select('followers')
             ->where('active', '=', '1')
@@ -47,7 +47,7 @@ class TestController extends Controller
               ->increment('followers', 1)->value('followers')
               ->orderBy('created_at', 'desc')->get();*/
 
-        //return $users;
+        return $f;
     }
 
 

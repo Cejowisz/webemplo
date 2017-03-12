@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\LevelOneModel;
-use App\Downline;
+use App\LevelTwoModel;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\LevelTwoController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
@@ -92,71 +93,76 @@ class RegisterController extends Controller
 
         ]);
 
+        // level one create
+        $level_one = new LevelOneModel();
+        $level_one->user_email = $data['email'];
 
-        // The Admin
-        if($data['email'] == 'cjustinobi@gmail.com'){
-            return $user;
-        }else{
-            $levelone = new LevelOneModel();
-            $levelone->user_email = $data['email'];
+        $level_one->save();
 
-            $levelone->save();
+        // level two create
+        $level_two = new LevelTwoModel();
+        $level_two->user_email = $data['email'];
 
-
-            // Selects older user column in levelone table and checks
-            // if it qualified to be incremented.
-            $countFollowers = DB::table('level_one_models')
-                ->select('followers')
-                ->where('active', '=', '1')
-                ->orderBy('created_at', 'desc')
-                ->first()
-                ->followers;
-
-            if ($countFollowers <= 6) {
-
-                DB::table('level_one_models')
-                    ->where('active', '=', 1)
-                    ->where('stop_count', '=', '1')
-                    ->increment('followers', 1);
-
-                $email = DB::table('level_one_models')
-                    ->select('user_email')
-                    ->where('active', '=', '1')
-                    ->orderBy('created_at', 'desc')
-                    ->first()
-                    ->user_email;
-
-                $downline = new Downline();
-                $downline->user_email = $email;
-                $downline->downline_email = $data['email'];
-
-                $downline->save();
-
-            } else {
-                // A user completes his stage on and should begin stage 2
-                DB::table('level_one_models')
-                    ->where('followers', '=', 7)
-                    ->where('active', '=', 1)
-                    ->update(['completed' => 1, 'stop_count' => 0]);
+        $level_two->save();
 
 
-                DB::table('level_one_models')
-                    ->where('followers', '=', 5)
-                    ->update(['active' => 1]);
-                // and should move to the next level!
+        // Selects older user column in levelone table and checks
+        // if it qualified to be incremented.
+        $countFollowers = DB::table('level_one_models')
+            ->select('followers')
+            ->where('active', '=', '1')
+            ->orderBy('created_at', 'desc')
+            ->first()
+            ->followers;
 
-                // Next user to receive
-                $nextTurn = DB::table('level_one_models')->select('user_email')
-                    ->where('completed', '=', '0')->first()->user_email;
+        if ($countFollowers <= 6) {
 
-                DB::table('level_one_models')
-                    ->where('user_email', $nextTurn)
-                    ->where('completed', 0)
-                    ->increment('followers', 1);
+            DB::table('level_one_models')
+                ->where('active', '=', 1)
+                ->where('stop_count', '=', '1')
+                ->increment('followers', 1);
+
+        } else {
+            // A user completes his stage on and should begin stage 2
+            DB::table('level_one_models')
+                ->where('followers', '=', 7)
+                ->where('active', '=', 1)
+                ->update(['completed' => 1, 'stop_count' => 0]);
+
+            $move2 = DB::table('level_one_models')
+                ->select('user_email')
+                ->where('followers', '=', '7')->first()->user_email;
+
+            if($move2){
+                $levelTwoId = DB::table('users')
+                    ->select('email')
+                    ->where('email', $move2)->first();
+
+                /*$goLevel_2 = new LevelTwoController();
+
+                $goLevel_2->store($levelTwoId);*/
+
+                $this->route('stage2.store', $levelTwoId->user_email);
             }
 
-            return $user;
+
+            DB::table('level_one_models')
+                ->where('followers', '=', 5)
+                ->update(['active' => 1]);
+            // and should move to the next level!
+
+            // Next user to receive
+            $nextTurn = DB::table('level_one_models')->select('user_email')
+                ->where('completed', '=', '0')->first()->user_email;
+
+            DB::table('level_one_models')
+                ->where('user_email', $nextTurn)
+                ->where('completed', 0)
+                ->increment('followers', 1);
         }
+
+        return $user;
+
     }
 
 

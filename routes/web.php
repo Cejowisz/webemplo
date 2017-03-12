@@ -36,6 +36,10 @@ Route::get('users', 'UsersController@index');
 Route::get('downline', 'LevelOneController@giveDownline');
 
 
+// Stage 2
+Route::get('stage2', ['as' => 'stage2.store', 'uses' => 'LevelTwoController@store']);
+
+
 Auth::routes();
 
 

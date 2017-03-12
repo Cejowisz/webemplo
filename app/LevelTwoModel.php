@@ -4,17 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
-class LevelOneModel extends Model
+class LevelTwoModel extends Model
 {
     public function user(){
         return $this->belongsTo('App\User', 'user_email');
     }
 
-    public $primarykey = 'user_email';
-
     protected $fillable = ['user_email'];
-
 }
-
-

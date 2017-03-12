@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{ url('css/webemplo.css') }}">
     <link rel="stylesheet" href="{{ url('css/responsive.css') }}">
 
+    @yield('stylesheets')
+
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([

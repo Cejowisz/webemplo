@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStagesTable extends Migration
+class CreateDownlinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateStagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stages', function (Blueprint $table) {
+        Schema::create('downlines', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('stage_1')->default(0);
-            $table->integer('stage_2')->default(0);
-            $table->integer('stage_3')->default(0);
-            $table->integer('stage_4')->default(0);
+            $table->string('user_email')->nullable();
+            $table->string('downline_email')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -30,6 +29,6 @@ class CreateStagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stages');
+        Schema::dropIfExists('downlines');
     }
 }
