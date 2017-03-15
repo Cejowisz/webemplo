@@ -26,7 +26,13 @@ Route::get('media', 'PagesController@media');
 //Route::get('subscription', 'SubscriptionController@index');
 
 // Admin
-Route::get('admin', 'AdminController@index');
+Route::get('/admin', ['as' => 'admin.index', 'uses' => 'AdminController@index']);
+Route::get('admin/users', ['as' => 'users.index', 'uses' => 'AdminController@users']);
+Route::get('admin/user/{id}', ['as' => 'users.show', 'uses' => 'AdminController@show']);
+Route::get('admin/downline/{id}', ['as' => 'users.downline', 'uses' => 'AdminController@brf']);
+Route::get('total-users', 'AdminController@totalUsers');
+
+
 
 
 // Users
@@ -34,6 +40,9 @@ Route::get('users', 'UsersController@index');
 
 // Subscribers
 Route::get('downline', 'LevelOneController@giveDownline');
+
+// Test
+Route::get('test', 'TestController@test');
 
 
 // Stage 2

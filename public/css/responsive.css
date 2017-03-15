@@ -3,3 +3,19 @@
     text-align: center !important;
     }
 }
+
+@media (min-width: 768px){
+    .web-navbar-right{
+        float: right;
+    }
+}
+
+@media (max-width: 380px){
+    .second-nav{
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    .signup .sm-img, .blue .sm-img{
+        margin-bottom: 5px;
+    }
+}

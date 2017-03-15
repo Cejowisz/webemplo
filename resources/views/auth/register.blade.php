@@ -123,7 +123,7 @@
 
                         <div class="form-group{{ $errors->has('acct_number') ? ' has-error' : '' }}">
                             <label for="acct_number">Account Number</label>
-                            <input type="number" name="acct_number" class="form-control" placeholder="Your bank account">
+                            <input type="text" name="acct_number" class="form-control" placeholder="Your bank account">
 
                             @if ($errors->has('acct_number'))
                                 <span class="help-block">
@@ -147,8 +147,8 @@
                             <label for="sme">Proposed SME</label>
                             <select name="sme" class="form-control">
                                 <option value="sme1">Select Category</option>
-                                <option value="sme2">Tissue Paper Production</option>
-                                <option value="sme3">Sachet Water Factory</option>
+                                <option value="Tissue Paper">Tissue Paper Production</option>
+                                <option value="Sachet Water Factory">Sachet Water Factory</option>
                             </select>
 
                             @if ($errors->has('sme'))

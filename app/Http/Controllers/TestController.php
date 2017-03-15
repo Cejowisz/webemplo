@@ -50,6 +50,11 @@ class TestController extends Controller
         return $f;
     }
 
+    public  function test()
+    {
+        return view('users.sb_admin');
+    }
+
 
 }
 /*$levelone = new LevelOneModel();

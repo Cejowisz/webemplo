@@ -16,7 +16,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <div class="flex-center position-ref full-height">
                 <div class="web-navbar">
-                    <ul class="nav navbar-nav pull-right web-navbar-right">
+                    <ul class="nav navbar-nav web-navbar-right">
                         <li><a href="{{ url('/') }}">Home</a></li>
                         <li><a href="{{ url('/about') }}">About Us</a></li>
                         <li><a href="{{ url('/career') }}">Career</a></li>
